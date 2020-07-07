@@ -39,3 +39,14 @@ print('coef:', reg.coef_)
 print('intercept:', reg.intercept_)
 print('scores:', reg.score(ages_test, net_worths_test))
 
+
+# In[39]:
+
+
+plt.scatter(ages_train, net_worths_train, color='blue')
+plt.scatter(ages_test, net_worths_test, color='red')
+plt.plot(ages_train, reg.predict(ages_train), color='green')
+plt.xlabel('Ages')
+plt.ylabel('Net Worth')
+plt.show()
+
