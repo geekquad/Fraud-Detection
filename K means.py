@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[22]:
 
 
 import pickle
@@ -12,10 +12,10 @@ sys.path.append(".../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 
 
-# In[5]:
+# In[23]:
 
 
-def Draw(pred, features, poi, mark_poi=False, name='image.png', f1_name='feature 1', f2='feature 2'):
+def Draw(pred, features, poi, mark_poi=False, name='image.png', f1_name='feature 1', f2_name ='feature 2'):
     colors = ["b", "c", "k", "m", "g"]
     for ii, pp in enumerate(pred):
         plt.scatter(features[ii][0], features[ii][1], color= colors[pred[ii]])
@@ -31,14 +31,14 @@ def Draw(pred, features, poi, mark_poi=False, name='image.png', f1_name='feature
     plt.show()
 
 
-# In[9]:
+# In[24]:
 
 
 data_dict = pickle.load(open("C:/Users/Geekquad/final_project_dataset_modified_unix.pkl", "rb"))
 data_dict.pop("TOTAL", 0)
 
 
-# In[10]:
+# In[25]:
 
 
 feature_1 = 'salary'
@@ -49,10 +49,24 @@ data = featureFormat(data_dict, features_list)
 poi, finance_features = targetFeatureSplit(data)
 
 
-# In[11]:
+# In[26]:
 
 
 for f1, f2 in finance_features:
-    plt.scatter(f1, f2)
+    plt.scatter( f1, f2 )
 plt.show()
+
+
+# ## Clustering using K-means:
+
+# In[27]:
+
+
+from sklearn.cluster import KMeans
+features_list = ["poi", feature_1, feature_2]
+data2 = featureFormat(data_dict, features_list)
+poi, finance_features = targetFeatureSplit(data2)
+clf = KMeans(n_clusters=2)
+pred = clf.fit_predict(finance_features)
+Draw(pred, finance_features, poi, name="clusters_before_scaling.pdf", f1_name = feature_1, f2_name=feature_2)
 
