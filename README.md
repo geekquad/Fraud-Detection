@@ -28,6 +28,9 @@ Among 146 samples, there are
 During the work on the project, I've played with the different features and models. One strategy was to standardize features, 
 apply principal component analysis and GaussianNB classifier, another strategy was to use decision tree classifier, incl. choosing the 
 features with features importance attribute and tuning the model.
+
+<img src="https://github.com/geekquad/Fraud-Detection/blob/master/img/feature.png">
+
 ### Create new features
 For both strategies I've tried to create new features as a fraction of almost all financial variables (f.ex. fractional bonus 
 as fraction of bonus to total_payments, etc.). Logic behind email feature creation was to check the fraction of emails, sent to POI, 
@@ -68,5 +71,29 @@ The F1 score can be interpreted as a weighted average of the precision and recal
 ### Validation Strategy
 The validation is a process of model performance evaluation. Classic mistace is to use small data set for the model training or validate model on the same data set as train it.
 There are a number of strategies to validate the model. One of them is to split the available data into train and test data another one is to perform a cross validation: process of splitting the data on k beans equal size; run learning experiments; repeat this operation number of times and take the average test result.
+<hr> </hr>
+
+## <u> Conclusions: </u>
+Before the start of this project I was completely sure that building the machine learning is about choosing the right algorithm 
+from the black box and some magic. Working on the person of interest identifier I've been recursively going through the process 
+of data exploration, outlier detection and algorithm tuning and spend most of the time on a data preparation. The model performance raised 
+significantly after missing values imputation, extra feature creation and feature selection and less after algorithm tuning which shows me 
+once again how important to fit the model with the good data.
+This experience might be applied to other fraud detection tasks. I think there is way of the model improvement by 
+using and tuning alternative algorithms like Random Forest.
+
+## Limitations of the study:
+It’s important to identify and acknowledge the limitation of the study. My conclusions are based just on the provided 
+data set which represent just 143 persons. To get the real causation, I should gather all financial and email information 
+about all enron persons which is most probably not possible. Missing email values were imputed with median so the modes of the distributions 
+of email features are switched to the medians. Algorithms were tuned sequentially (I've changed one parameter to achieve better performance 
+and then swithched to another parameter. There is a chance that othere parameters in combination might give better model's accuracy).
+
+## References:
+- Enron data set: <a href="https://www.cs.cmu.edu/~./enron/"> https://www.cs.cmu.edu/~./enron/ </a>
+- FindLaw financial data: <a href="http://www.findlaw.com"> http://www.findlaw.com </a> 
+- Visualization of POI: <a href="http://www.nytimes.com/packages/html/national/20061023_ENRON_TABLE/index.html"> http://www.nytimes.com/packages/html/national/20061023_ENRON_TABLE/index.html </a>
+- Enron on Wikipedia: <a href="https://en.wikipedia.org/wiki/Enron"> https://en.wikipedia.org/wiki/Enron</a>
+- F1 score on Wikipedia: <a href="https://en.wikipedia.org/wiki/F1_score"> https://en.wikipedia.org/wiki/F1_score </a>
 
 
